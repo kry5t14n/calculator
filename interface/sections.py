@@ -98,6 +98,16 @@ class Bottom(tk.Frame):
         interface.Button(self, (4, 3), '+',
                          self.display_section, 'basic_operation')
 
+        # Advanced operations Buttons
+        interface.Button(self, (0, 0), '%',
+                         self.display_section, 'advanced_operation')
+        interface.Button(self, (1, 0), '¹⁄ₓ',
+                         self.display_section, 'advanced_operation')
+        interface.Button(self, (1, 1), 'x²',
+                         self.display_section, 'advanced_operation')
+        interface.Button(self, (1, 2), '√x',
+                         self.display_section, 'advanced_operation')
+
         # Equal sign Button
         interface.Button(self, (5, 3), '=',
                          self.display_section, 'equal_sign')
@@ -107,8 +117,14 @@ class Bottom(tk.Frame):
                          self.display_section, 'clear')
         interface.Button(self, (0, 2), 'C',
                          self.display_section, 'clear')
-        interface.Button(self, (0, 3), '<-',
+        interface.Button(self, (0, 3), '←',
                          self.display_section, 'clear')
+
+        # Other Buttons
+        interface.Button(self, (5, 0), '+/-',
+                         self.display_section, 'other')
+        interface.Button(self, (5, 2), '.',
+                         self.display_section, 'other')
 
         # # This is only a demo layout
         # # It should be changed soon

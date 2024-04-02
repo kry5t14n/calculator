@@ -57,12 +57,18 @@ class Button(tk.Button):
         if btn_type == 'number':
             self['command'] = partial(number_button,
                                       text, display_section)
-        if btn_type == 'basic_operation':
+        elif btn_type == 'basic_operation':
             self['command'] = partial(basic_operation_button,
                                       text, display_section)
-        if btn_type == 'equal_sign':
-            self['command'] = partial(equal_button, display_section)
-
-        if btn_type == 'clear':
+        elif btn_type == 'advanced_operation':
+            self['command'] = partial(advanced_operation_button,
+                                      text, display_section)
+        elif btn_type == 'equal_sign':
+            self['command'] = partial(equal_button,
+                                      display_section)
+        elif btn_type == 'clear':
             self['command'] = partial(clear_button,
+                                      text, display_section)
+        elif btn_type == 'other':
+            self['command'] = partial(other_button,
                                       text, display_section)
