@@ -9,7 +9,7 @@ def number_button(text: str, display_section) -> None:
         display_section.display = ''
 
     if (display_section.display != '0'
-            and (display_section.display.isnumeric()
+            and (display_section.display[-1].isnumeric()
                  or display_section.display[-1] == '.')):
         display_section.display += text
     else:
@@ -24,11 +24,6 @@ def number_button(text: str, display_section) -> None:
     # Give history property a list as an argument
     # To display its value
     display_section.history = display_section.history
-
-    # ONLY FOR TESTING
-    print('NUMBER')
-    print(display_section.history)
-    print(display_section.display)
 
 
 def basic_operation_button(text: str, display_section) -> None:
@@ -53,11 +48,6 @@ def basic_operation_button(text: str, display_section) -> None:
         # Give history property a list as an argument
         # To display its value
         display_section.history = display_section.history
-
-        # ONLY FOR TESTING
-        print('BASIC_OPERATION')
-        print(display_section.history)
-        print(display_section.display)
 
 
 def advanced_operation_button(text: str, display_section) -> None:
@@ -161,7 +151,6 @@ def equal_button(display_section) -> None:
 
         display_section.history.append('=')
         display_section.history = display_section.history
-        print(display_section.history)
         display_section.display = result
 
 
@@ -188,8 +177,6 @@ def clear_button(text: str, display_section) -> None:
 
 
 def other_button(text: str, display_section) -> None:
-
-    print('OTHER')
 
     if display_section.history and display_section.history[-1] == '=':
         display_section.history = [display_section.display]
