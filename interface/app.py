@@ -1,7 +1,6 @@
 import tkinter as tk
 import interface
 from database import getters
-# from decimal import *
 
 
 class App(tk.Tk):
@@ -19,11 +18,11 @@ class App(tk.Tk):
         self.columnconfigure(0, weight=1)
         self['bg'] = colors['Dark3']
 
-        # Top section
+        # Interface sections
         display_section = interface.Top(self)
         interface.Bottom(self, display_section)
 
-        # Run App loop
+        # Run app loop
         self.mainloop()
 
 

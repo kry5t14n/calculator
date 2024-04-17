@@ -54,6 +54,7 @@ class Button(tk.Button):
         self['fg'] = self.colors['Light2']
         self['bg'] = self.colors['Dark2']
 
+        # Button command
         if btn_type == 'number':
             self['command'] = partial(number_button,
                                       text, display_section)

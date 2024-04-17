@@ -15,11 +15,11 @@ class Top(tk.Frame):
         self['bg'] = self.colors['Dark3']
         self.grid(row=0, column=0, sticky='e')
 
-        # Section properties
+        # Create section properties
         self._display = '0'
         self._history = []
 
-        # Create and place the section labels with grid()
+        # Create and place section labels with grid()
         self.lbl_display = interface.Label(self, (1, 0),
                                            '0', self.fonts[2])
         self.lbl_history = interface.Label(self, (0, 0),
@@ -48,7 +48,6 @@ class Top(tk.Frame):
 class Bottom(tk.Frame):
     def __init__(self, parent, display_section) -> None:
 
-        # Define section of the display
         self.display_section = display_section
 
         # Get colors from the database
@@ -125,30 +124,3 @@ class Bottom(tk.Frame):
                          self.display_section, 'other')
         interface.Button(self, (5, 2), '.',
                          self.display_section, 'other')
-
-        # # This is only a demo layout
-        # # It should be changed soon
-        # interface.Button(self, (0, 0), '%')
-        # interface.Button(self, (0, 1), 'CE')
-        # interface.Button(self, (0, 2), 'C')
-        # interface.Button(self, (0, 3), '<-')
-        # interface.Button(self, (1, 0), '1/x')
-        # interface.Button(self, (1, 1), 'x^2')
-        # interface.Button(self, (1, 2), 'sqrt(x)')
-        # interface.Button(self, (1, 3), '/')
-        # interface.Button(self, (2, 0), '7')
-        # interface.Button(self, (2, 1), '8')
-        # interface.Button(self, (2, 2), '9')
-        # interface.Button(self, (2, 3), '*')
-        # interface.Button(self, (3, 0), '4')
-        # interface.Button(self, (3, 1), '5')
-        # interface.Button(self, (3, 2), '6')
-        # interface.Button(self, (3, 3), '-')
-        # interface.Button(self, (4, 0), '1')
-        # interface.Button(self, (4, 1), '2')
-        # interface.Button(self, (4, 2), '3')
-        # interface.Button(self, (4, 3), '+')
-        # interface.Button(self, (5, 0), '+/-')
-        # interface.Button(self, (5, 1), '0')
-        # interface.Button(self, (5, 2), '.')
-        # interface.Button(self, (5, 3), '=')

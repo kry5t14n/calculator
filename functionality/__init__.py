@@ -1,4 +1,4 @@
-from .buttons import number_button, basic_operation_button
+from .buttons import *
 
 __all__ = [
     'buttons'

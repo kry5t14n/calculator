@@ -1,41 +1,45 @@
-from decimal import Decimal
+from functionality.helpers import *
 import math
 
 
 def number_button(text: str, display_section) -> None:
 
+    # Display button text if it's a result of operation
     if display_section.history and display_section.history[-1] == '=':
         display_section.history = [text]
-        display_section.display = ''
+        display_section.display = '0'
 
+    # Update display
     if (display_section.display != '0'
-            and (display_section.display[-1].isnumeric()
-                 or display_section.display[-1] == '.')):
+            and is_number(display_section.display[-1])):
         display_section.display += text
     else:
         display_section.display = text
 
+    # Update history
     if (display_section.history
             and len(display_section.history) != 2):
         display_section.history[-1] = display_section.display
     else:
         display_section.history.append(display_section.display)
 
-    # Give history property a list as an argument
-    # To display its value
     display_section.history = display_section.history
 
 
 def basic_operation_button(text: str, display_section) -> None:
 
     if display_section.history:
-        if display_section.history[-1][-1] == '.':
-            display_section.history[-1] = str(int(
-                float(display_section.history[-1])))
+
+        # Format the last number
+        display_section.history[-1] \
+            = clear_number(display_section.history[-1])
+
+        # Add or change the operation sign
         if len(display_section.history) == 1:
             display_section.history.append(text)
         elif len(display_section.history) == 2:
             display_section.history[-1] = text
+        # Get the result and add the operation sign
         else:
             result = get_result(display_section.history[1],
                                 display_section.history)
@@ -43,26 +47,25 @@ def basic_operation_button(text: str, display_section) -> None:
                 result = str(int(float(result)))
             display_section.history = [result, text]
 
+        # Update history and display
         display_section.display = '0'
-
-        # Give history property a list as an argument
-        # To display its value
         display_section.history = display_section.history
 
 
 def advanced_operation_button(text: str, display_section) -> None:
 
-    check_decimals = False
+    if display_section.history:
 
-    if display_section.history and display_section.history[-1] == '=':
-        display_section.history = [display_section.display]
+        # Get the result
+        if display_section.history[-1] == '=':
+            display_section.history = [display_section.display]
 
-    if (display_section.history
-            and display_section.history[-1][-1] == '.'):
-        display_section.history[-1] = str(int(
-            float(display_section.history[-1])))
+        # Format the last number
+        display_section.history[-1] \
+            = clear_number(display_section.history[-1])
 
     if len(display_section.history) in [1, 3]:
+
         if text == '%':
             if len(display_section.history) == 1:
                 display_section.history = ['0']
@@ -71,69 +74,72 @@ def advanced_operation_button(text: str, display_section) -> None:
                     Decimal(display_section.history[0])
                     * Decimal(display_section.history[-1])
                     * Decimal('0.01'))
-                check_decimals = True
+
         elif text == '¹⁄ₓ':
+            # Prevent dividing by 0
             if display_section.history[-1] == '0':
                 display_section.history = ['0']
             else:
                 display_section.history[-1] = str(
                     1 / Decimal(display_section.history[-1]))
-                check_decimals = True
+
         elif text == 'x²':
             display_section.history[-1] = str(
                 Decimal(display_section.history[-1]) ** 2)
-            check_decimals = True
+
         elif text == '√x':
+            # Get result only if given value >= 0
             if float(display_section.history[-1]) >= 0:
                 display_section.history[-1] = str(
                     math.sqrt(Decimal(display_section.history[-1])))
-                check_decimals = True
             else:
                 display_section.history = ['0']
 
     elif len(display_section.history) == 2:
+
         if text == '%':
             display_section.history.append(str(
                 Decimal(display_section.history[0])
                 ** 2 * Decimal('0.01')))
-            check_decimals = True
+
         elif text == '¹⁄ₓ':
+            # Prevent dividing by 0
             if display_section.history[0] == '0':
                 display_section.history = ['0']
             else:
                 display_section.history.append(str(
                     1 / Decimal(display_section.history[0])))
-                check_decimals = True
+
         elif text == 'x²':
             display_section.history.append(str(
                 Decimal(display_section.history[0]) ** 2))
-            check_decimals = True
+
         elif text == '√x':
+            # Get result only if given value >= 0
             if float(display_section.history[0]) >= 0:
                 display_section.history.append(str(
                     math.sqrt(Decimal(display_section.history[0]))))
-                check_decimals = True
             else:
                 display_section.history = ['0']
 
-    if check_decimals:
-        if float(display_section.history[-1]).is_integer():
-            display_section.history[-1] = str(
-                int(float(display_section.history[-1])))
-
     if display_section.history:
+
+        display_section.history[-1] \
+            = clear_number(display_section.history[-1])
+
         display_section.history = display_section.history
         display_section.display = display_section.history[-1]
 
 
 def equal_button(display_section) -> None:
 
-    if (display_section.history
-            and display_section.history[-1][-1] == '.'):
-        display_section.history[-1] = str(int(
-            float(display_section.history[-1])))
+    # Format the last number
+    if display_section.history:
+        display_section.history[-1] \
+            = clear_number(display_section.history[-1])
 
     if '=' not in display_section.history:
+
         result = '0'
 
         if len(display_section.history) == 3:
@@ -182,8 +188,7 @@ def other_button(text: str, display_section) -> None:
         display_section.history = [display_section.display]
 
     number = True if (display_section.history and
-                      (display_section.history[-1][-1].isnumeric()
-                       or display_section.history[-1][-1] == '.')) \
+                      is_number(display_section.history[-1][-1])) \
         else False
 
     if number:
@@ -196,19 +201,3 @@ def other_button(text: str, display_section) -> None:
 
         display_section.history = display_section.history
         display_section.display = display_section.history[-1]
-
-
-def get_result(mode: str, elements: list) -> str:
-
-    if mode == '/':
-        result = Decimal(elements[0]) / Decimal(elements[2])
-    elif mode == '*':
-        result = Decimal(elements[0]) * Decimal(elements[2])
-    elif mode == '-':
-        result = Decimal(elements[0]) - Decimal(elements[2])
-    elif mode == '+':
-        result = Decimal(elements[0]) + Decimal(elements[2])
-    else:
-        return 'Wrong Character'
-
-    return str(result)

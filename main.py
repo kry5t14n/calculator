@@ -1,9 +1,9 @@
 import interface
-from database import create
+from database.create import create_database
 
 
 def main():
-    create.create_database()
+    create_database()
     interface.App('Calculator', (280, 380))
 
 

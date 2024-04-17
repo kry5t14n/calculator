@@ -8,12 +8,10 @@ def create_database() -> None:
     conn = sqlite3.connect('data.db')
     cur = conn.cursor()
 
-    # Get all tables names
+    # Get all tables names and save it in a list
     get_tables = cur.execute('''
             SELECT name FROM sqlite_master WHERE type='table'
         ''').fetchall()
-
-    # Format fetched data
     tables = [table[0] for table in get_tables]
 
     # Create FONTS table if it doesn't exist
@@ -39,6 +37,7 @@ def create_database() -> None:
                     CODE STRING
                 )
             ''')
+
         # Add data to the table
         setters.insert_colors_data(conn)
         conn.commit()
