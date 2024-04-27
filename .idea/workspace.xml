@@ -4,18 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b44f8b6d-99ef-492f-8eb5-e5e43e026e07" name="Changes" comment="Additional comments and cosmetic changes">
-      <change afterPath="$PROJECT_DIR$/tests/database/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/database/test_colors.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/database/test_fonts.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/functionality/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/interface/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/getters.py" beforeDir="false" afterPath="$PROJECT_DIR$/database/getters.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/functionality/buttons.py" beforeDir="false" afterPath="$PROJECT_DIR$/functionality/buttons.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/functionality/helpers.py" beforeDir="false" afterPath="$PROJECT_DIR$/functionality/helpers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interface/sections.py" beforeDir="false" afterPath="$PROJECT_DIR$/interface/sections.py" afterDir="false" />
-    </list>
+    <list default="true" id="b44f8b6d-99ef-492f-8eb5-e5e43e026e07" name="Changes" comment="Handling divide by 0" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -30,6 +19,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1
@@ -42,17 +32,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.data.executor": "Run",
-    "Python.main.executor": "Run",
-    "Python.test.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/Krystian/PycharmProjects/calculator"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.data.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Krystian/PycharmProjects/calculator&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Krystian\PycharmProjects\calculator\tests" />
@@ -122,13 +112,22 @@
       <option name="project" value="LOCAL" />
       <updated>1713361501500</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Handling divide by 0">
+      <option name="closed" value="true" />
+      <created>1714217999806</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1714217999806</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="first commit" />
     <MESSAGE value="version 1.0" />
     <MESSAGE value="Additional comments and cosmetic changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Additional comments and cosmetic changes" />
+    <MESSAGE value="Handling divide by 0" />
+    <option name="LAST_COMMIT_MESSAGE" value="Handling divide by 0" />
   </component>
 </project>
