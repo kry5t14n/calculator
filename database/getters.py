@@ -1,7 +1,7 @@
 import sqlite3
 
 
-def get_data(table_name) -> dir:
+def get_data(table_name: str) -> dir:
 
     # Open connection with database
     conn = sqlite3.connect('data.db')

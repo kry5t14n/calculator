@@ -7,7 +7,7 @@ def get_result(mode: str, elements: list) -> str:
         if elements[2] != '0':
             result = Decimal(elements[0]) / Decimal(elements[2])
         else:
-            result = '0'
+            result = 'Error'
     elif mode == '*':
         result = Decimal(elements[0]) * Decimal(elements[2])
     elif mode == '-':
@@ -32,7 +32,10 @@ def is_number(text: str) -> bool:
 
 def clear_number(number: str) -> str:
 
-    if number[-1] == '.' or float(number).is_integer():
-        return str(int(float(number)))
+    try:
+        if number[-1] == '.' or float(number).is_integer():
+            return str(int(float(number)))
+    except ValueError:
+        return number
 
     return number

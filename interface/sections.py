@@ -17,7 +17,7 @@ class Top(tk.Frame):
 
         # Create section properties
         self._display = '0'
-        self._history = []
+        self._history = ['0']
 
         # Create and place section labels with grid()
         self.lbl_display = interface.Label(self, (1, 0),

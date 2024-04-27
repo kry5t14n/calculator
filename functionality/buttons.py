@@ -4,6 +4,10 @@ import math
 
 def number_button(text: str, display_section) -> None:
 
+    # Clear Error message
+    if display_section.display == 'Error':
+        clear_button('C', display_section)
+
     # Display button text if it's a result of operation
     if display_section.history and display_section.history[-1] == '=':
         display_section.history = [text]
@@ -28,6 +32,10 @@ def number_button(text: str, display_section) -> None:
 
 def basic_operation_button(text: str, display_section) -> None:
 
+    # Clear Error message
+    if display_section.display == 'Error':
+        clear_button('C', display_section)
+
     if display_section.history:
 
         # Format the last number
@@ -43,8 +51,7 @@ def basic_operation_button(text: str, display_section) -> None:
         else:
             result = get_result(display_section.history[1],
                                 display_section.history)
-            if float(result).is_integer():
-                result = str(int(float(result)))
+            result = clear_number(result)
             display_section.history = [result, text]
 
         # Update history and display
@@ -53,6 +60,10 @@ def basic_operation_button(text: str, display_section) -> None:
 
 
 def advanced_operation_button(text: str, display_section) -> None:
+
+    # Clear Error message
+    if display_section.display == 'Error':
+        clear_button('C', display_section)
 
     if display_section.history:
 
@@ -78,7 +89,7 @@ def advanced_operation_button(text: str, display_section) -> None:
         elif text == '¹⁄ₓ':
             # Prevent dividing by 0
             if display_section.history[-1] == '0':
-                display_section.history = ['0']
+                display_section.display = 'Error'
             else:
                 display_section.history[-1] = str(
                     1 / Decimal(display_section.history[-1]))
@@ -105,7 +116,7 @@ def advanced_operation_button(text: str, display_section) -> None:
         elif text == '¹⁄ₓ':
             # Prevent dividing by 0
             if display_section.history[0] == '0':
-                display_section.history = ['0']
+                display_section.display = 'Error'
             else:
                 display_section.history.append(str(
                     1 / Decimal(display_section.history[0])))
@@ -128,10 +139,15 @@ def advanced_operation_button(text: str, display_section) -> None:
             = clear_number(display_section.history[-1])
 
         display_section.history = display_section.history
-        display_section.display = display_section.history[-1]
+        if display_section.display != 'Error':
+            display_section.display = display_section.history[-1]
 
 
 def equal_button(display_section) -> None:
+
+    # Clear Error message
+    if display_section.display == 'Error':
+        clear_button('C', display_section)
 
     # Format the last number
     if display_section.history:
@@ -152,8 +168,7 @@ def equal_button(display_section) -> None:
         elif display_section.history:
             result = display_section.history[0]
 
-        if float(result).is_integer():
-            result = str(int(float(result)))
+        result = clear_number(result)
 
         display_section.history.append('=')
         display_section.history = display_section.history
@@ -162,14 +177,14 @@ def equal_button(display_section) -> None:
 
 def clear_button(text: str, display_section) -> None:
 
-    if text == 'CE':
+    if text == 'C' or display_section.display == 'Error':
+        display_section.display = '0'
+        display_section.history = ['0']
+
+    elif text == 'CE':
         display_section.display = '0'
         if len(display_section.history) in [1, 3]:
             display_section.history[-1] = '0'
-
-    elif text == 'C':
-        display_section.display = '0'
-        display_section.history = []
 
     elif text == '←':
         if len(display_section.display) != 1:
@@ -183,6 +198,10 @@ def clear_button(text: str, display_section) -> None:
 
 
 def other_button(text: str, display_section) -> None:
+
+    # Clear Error message
+    if display_section.display == 'Error':
+        clear_button('C', display_section)
 
     if display_section.history and display_section.history[-1] == '=':
         display_section.history = [display_section.display]
