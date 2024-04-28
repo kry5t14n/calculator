@@ -9,26 +9,31 @@ def get_data(table_name: str) -> dir:
     data = f"Table '{table_name}' doesn't exist"
 
     # Get all the tables names
-    tables = cur.execute('''
-                SELECT name FROM sqlite_master WHERE type='table'
-            ''').fetchall()
+    try:
+        tables = cur.execute('''
+                    SELECT name FROM sqlite_master WHERE type='table'
+                ''').fetchall()
 
-    for table in tables:
-        if table_name.upper() in table:
-            fetched_data = cur.execute(f'''
-                        SELECT * FROM {table_name}
-                    ''').fetchall()
+        for table in tables:
+            if table_name.upper() in table:
+                fetched_data = cur.execute(f'''
+                            SELECT * FROM {table_name}
+                        ''').fetchall()
 
-            # Format fetched data
-            if table_name.upper() == 'COLORS':
-                data = {}
-                for item in fetched_data:
-                    data[item[1]] = item[2]
+                # Format fetched data
+                if table_name.upper() == 'COLORS':
+                    data = {}
+                    for item in fetched_data:
+                        data[item[1]] = item[2]
 
-            if table_name.upper() == 'FONTS':
-                data = {}
-                for item in fetched_data:
-                    data[item[0]] = item[1:]
+                if table_name.upper() == 'FONTS':
+                    data = {}
+                    for item in fetched_data:
+                        data[item[0]] = item[1:]
+
+    except sqlite3.Error as er:
+        print(er.sqlite_errorcode)
+        print(er.sqlite_errorname)
 
     # Close connection with database
     conn.close()

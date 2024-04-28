@@ -17,7 +17,9 @@ def get_result(mode: str, elements: list) -> str:
     else:
         return 'Wrong Character'
 
-    return str(result)
+    result = clear_number(str(result))
+
+    return result
 
 
 def is_number(text: str) -> bool:
